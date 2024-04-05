@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Enregistrer un etudiant</title>
+
+  @vite(['resources/css/app.css', 'resources/js/app.js'])
+</head>
+<body class="h-full">
+  @include('partials/navigation')
+  <main class="container relative top-24">
+    <div class="relative w-full">
+      <form action="{{ route('student.store') }}" method="post" class="mx-auto w-4/6 md:w-3/5 px-2 font-medium font-sans">
+        {{ csrfField() }}
+        <div class="flex flex-col space-y-5">
+          <div class="flex justify-between items-center">
+            <label for="matricule">Matricule</label>
+            <input class="input" type="text" id="matricule" name="matricule" autocomplete="off" required>
+          </div>
+          <div class="flex justify-between items-center">
+            <label for="last">Nom</label>
+            <input class="input" type="text" id="last" name="lastname" autocomplete="off" required>
+          </div>
+          <div class="flex justify-between items-center">
+            <label for="first">Prenom</label>
+            <input class="input" type="text" id="first" name="firstname" autocomplete="off" required>
+          </div>
+          <div class="flex justify-between items-center">
+            <label for="email">Email</label>
+            <input class="input" type="text" id="email" name="email" autocomplete="off" required>
+          </div>
+          <div class="flex justify-between items-center">
+            <label for="contribution">Contribution</label>
+            <input class="input" type="number" id="contribution" name="contribution" autocomplete="off" required>
+          </div>
+          <div class="flex justify-center my-2">
+            <input type="submit" value="Enregistrer" class="button">
+          </div>
+        </div>
+      </form>
+    </div>
+  </main>
+</body>
+</html>

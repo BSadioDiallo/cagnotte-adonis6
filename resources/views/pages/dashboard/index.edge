@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> Cagnotte </title>
+
+  @vite(['resources/css/app.css', 'resources/js/app.js'])
+</head>
+<body>
+  @include('partials/navigation')
+  <main class="relative top-20 flex flex-col items-center space-y-10">
+    <div class="flex items-center flex-col grow">
+      <svg class="stroke-rose-400 w-2/4 md:w-2/5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-wallet"><path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1"/><path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"/></svg>
+      <div>
+        <p class="font-mono font-medium text-2xl md:text-3xl text-center">Le montant total des contributions est de  <em class="text-rose-400">{{ total }} GNF</em>.</p>
+      </div>
+    </div>
+    <div class="bg-rose-400 p-2 rounded-md text-white">
+      <a href="{{ route('dashboard.students') }}" class="text-xl font-medium text-center">Etudiants inscrits</a>
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base{
+  body {
+    @apply font-sans;
+  }
+  .button {
+    @apply bg-rose-400 text-white font-semibold px-2 py-1 rounded-sm cursor-pointer hover:opacity-85 active:scale-105;
+  }
+  .input {
+    @apply border border-rose-400 font-semibold px-2 py-1 text-neutral-600 rounded-sm focus:outline-rose-400;
+  }
+  table th, td {
+    @apply px-2 text-right text-lg;
+  }
+  .information-display-div {
+    @apply grid grid-cols-5 border-b-2 border-rose-400 mx-auto cursor-context-menu text-center;
+  }
+}

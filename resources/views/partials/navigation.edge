@@ -1,0 +1,52 @@
+<header class="bg-white z-50 fixed top-0 w-full shadow">
+      <nav
+        id="main-nav"
+        class="bg-white max-w-5xl mx-auto font-poppins p-6 flex items-center justify-between"
+      >
+        <a href="{{ route('home')}}" class="flex" aria-label="Page d'accueil du portfolio">
+          <span
+          aria-hidden="true"
+          class="text-lg lg:text-xl"
+          >
+            Cagnotte <strong>C<span class="text-rose-600">.</span></strong>
+          </span>
+        </a>
+        <button
+        aria-label="toggle button"
+        aria-expanded="false"
+        id="menu-btn"
+        class="cursor-pointer w-7 md:hidden"
+        >
+          <img src="assets/menu.svg" alt="">
+        </button>
+      <ul
+      id="toggled-menu"
+      class="w-full absolute top-full left-0 bg-white -translate-y-full -z-10 text-gray-800 border-b border-gray-200 flex flex-col items-center md:static md:z-10 md:w-min md:transform-none md:border-none md:flex-row"
+      >
+        <li class="py-4 md:py-0 md:mr-6">
+          <a
+          href="{{ route('home') }}"
+          class="text-sm uppercase font-semibold w-full hover:text-rose-600">Cagnotte
+          </a>
+        </li>
+        <li class="py-4 md:py-0 md:mr-6">
+          <a
+          href="{{ route('dashboard.students') }}"
+          class="text-sm uppercase font-semibold w-full hover:text-rose-600">Etudiants
+          </a>
+        </li>
+        <li class="py-4 md:py-0 md:mr-6">
+          <a
+          href="{{ route('dashboard.transactions') }}"
+          class="text-sm uppercase font-semibold w-full hover:text-rose-600">Transactions
+          </a>
+        </li>
+        <li class="py-4 md:py-0 md:mr-6">
+          <a
+          href="contact"
+          class="text-sm uppercase font-semibold w-full hover:text-rose-600">Profil
+          </a>
+        </li>
+      </ul>
+      </nav>
+    </header>

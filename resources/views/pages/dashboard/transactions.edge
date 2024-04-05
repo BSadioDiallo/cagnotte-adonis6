@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> Cagnotte </title>
+
+  @vite(['resources/css/app.css', 'resources/js/app.js'])
+</head>
+<body>
+  @include('partials/navigation')
+  <main class="relative top-20 flex flex-col">
+    <div class="flex space-x-3 items-center">
+      <svg class="stroke-rose-400 w-1/12 md:w-1/12" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right-left"><path d="m16 3 4 4-4 4"/><path d="M20 7H4"/><path d="m8 21-4-4 4-4"/><path d="M4 17h16"/></svg>
+      <p class="font-mono font-medium text-xl text-center">Les transactions  <em class="text-rose-400">effectuées</em>.</p>
+    </div>
+    <div class="self-center">
+      <table class="border border-rose-400 border-collapse">
+        <thead>
+          <tr>
+            <th class="border border-rose-400">Date</th>
+            <th class="border border-rose-400" >Montant</th>
+            <th class="border border-rose-400">Id de l'étudiant</th>
+            <th class="border border-rose-400">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          @if(transactions.length === 0)
+            <tr>
+              <td class="border border-rose-400" colspan="4">Aucune transaction n'a été effectuée.</td>
+            </tr>
+          @else
+            @each(transaction in transactions)
+            <tr>
+              <td class="border border-rose-400">{{ transaction.createdAt.toJSDate().toLocaleString() }}</td>
+              <td class="border border-rose-400">{{ transaction.amount }}</td>
+              <td class="border border-rose-400">{{ transaction.studentId }}</td>
+              <td class="border border-rose-400"><a href="{{ route('student.show', [transaction.studentId]) }}">Details</a></td>
+            </tr>
+            @end
+          @end
+        </tbody>
+      </table>
+    </div>
+  </main>
+</body>
+</html>
