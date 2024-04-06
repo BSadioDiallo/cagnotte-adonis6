@@ -7,7 +7,7 @@
     @apply font-sans;
   }
   .button {
-    @apply bg-rose-400 text-white font-semibold px-2 py-1 rounded-sm cursor-pointer hover:opacity-85 active:scale-105;
+    @apply bg-rose-400 text-white font-semibold px-2 py-1 rounded-sm cursor-pointer hover:opacity-85 active:scale-105 transition-opacity delay-75;
   }
   .input {
     @apply border border-rose-400 font-semibold px-2 py-1 text-neutral-600 rounded-sm focus:outline-rose-400;
@@ -17,5 +17,14 @@
   }
   .information-display-div {
     @apply grid grid-cols-5 border-b-2 border-rose-400 mx-auto cursor-context-menu text-center;
+  }
+  .toast {
+    @apply fixed bottom-0 z-50 right-2 text-sm border p-2 pl-3 pr-8 md:p-3 rounded-md transition-transform delay-75 duration-1000 -translate-y-6 transform cursor-context-menu;
+  }
+  .info {
+    @apply text-neutral-800 border-blue-400;
+  }
+  .warning {
+    @apply bg-red-300 border-red-400;
   }
 }

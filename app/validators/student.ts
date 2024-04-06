@@ -7,13 +7,13 @@ export const createStudentValidator = vine.compile(
       .string()
       .trim()
       .alpha({ allowDashes: false, allowSpaces: true, allowUnderscores: false })
-      .toCamelCase()
+      .toUpperCase()
       .minLength(2),
     lastname: vine
       .string()
       .trim()
       .alpha({ allowDashes: false, allowUnderscores: false, allowSpaces: false })
-      .toCamelCase()
+      .toUpperCase()
       .minLength(2),
     email: vine.string().trim().email(),
     contribution: vine.number().withoutDecimals().min(10000),
@@ -27,13 +27,13 @@ export const updateStudentValidator = vine.compile(
       .string()
       .trim()
       .alpha({ allowDashes: false, allowSpaces: true, allowUnderscores: false })
-      .toCamelCase()
+      .toUpperCase()
       .minLength(2),
     lastname: vine
       .string()
       .trim()
       .alpha({ allowDashes: false, allowUnderscores: false, allowSpaces: false })
-      .toCamelCase()
+      .toUpperCase()
       .minLength(2),
     email: vine.string().trim().email(),
     contribution: vine.number().withoutDecimals().min(10000),
