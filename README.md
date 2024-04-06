@@ -9,7 +9,7 @@ pnpm install
 ```
 
 ## Creation du dossier pour la BD
-A la racine du projet tu dois creer un dossier `tmp` c'est là bas que sera stocker la bd
+Une fois dans le dossier, à la racine tu dois creer un dossier `tmp` c'est là bas que sera stocker la bd
 
 ## Creer un fichier env
 Après tu dois creer un fichier .env toujours à la racine, dedans tu copy et tu colle ça sauvegardz.  
