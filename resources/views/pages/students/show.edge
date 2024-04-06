@@ -47,7 +47,11 @@
         @!component('components/toast', { type : 'error', message : "Transaction échouée" })
       @endif
     @end
-
+    @inputError('amount')
+      @each(message in $messages)
+        @!component('components/toast', { type : 'error', message})
+      @end
+    @end
   </main>
 </body>
 </html>

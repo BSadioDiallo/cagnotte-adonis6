@@ -70,6 +70,12 @@
         </div>
       </form>
     </div>
+    @if(flashMessages.has('inputErrorsBag'))
+      @!component('components/toast', { type: 'error', message : flashMessages.get('inputErrorsBag.matricule') })
+    @end
+    @flashMessage('error')
+      @!component('components/toast', { type: 'error', message: flashMessages.get('error') })
+    @end
   </main>
 </body>
 </html>

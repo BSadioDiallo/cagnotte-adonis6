@@ -39,7 +39,11 @@ function removeToast() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  handleModal()
+  try {
+    handleModal()
+  } catch (error) {
+    console.error('modal de paiements absent')
+  }
   if (toastElement) {
     removeToast()
   }

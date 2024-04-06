@@ -7,7 +7,8 @@ export default class StudentsController {
   async index({ view }: HttpContext) {
     return view.render('pages/students/index')
   }
-  async store({ request, response, session }: HttpContext) {
+
+  async store({ request, response, session, view }: HttpContext) {
     const payload = await request.validateUsing(createStudentValidator)
 
     try {
@@ -17,12 +18,12 @@ export default class StudentsController {
       transaction.studentId = student.id
       await transaction.save()
       await student.related('transactions').save(transaction)
-      response.safeStatus(201) // created
+
       response.redirect().back()
     } catch (error) {
       response.status(400)
-      session.flash('error', 'An error occurred while saving the transaction')
-      response.redirect().back()
+      session.flash('error', 'Ce matricule est déjà utilisé.')
+      return view.render('pages/students/index')
     }
   }
 

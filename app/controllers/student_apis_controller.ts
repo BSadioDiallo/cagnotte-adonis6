@@ -1,11 +1,12 @@
+import type { HttpContext } from '@adonisjs/core/http'
 import Student from '#models/student'
 import Transaction from '#models/transaction'
-import type { HttpContext } from '@adonisjs/core/http'
+import { contributionValidator } from '#validators/contribution'
 
 export default class StudentApisController {
   async contribute({ request, response, params, session }: HttpContext) {
     const { id } = params
-    const { amount } = request.all()
+    const { amount } = await request.validateUsing(contributionValidator)
 
     session.clear()
 
@@ -15,7 +16,7 @@ export default class StudentApisController {
       transaction.amount = amount
       transaction.studentId = student.id
       await transaction.save()
-      student.contribution += Number.parseFloat(amount)
+      student.contribution += amount
       await student.related('transactions').save(transaction)
       session.flash('success', 'Transaction effectuer avec succès')
       response.redirect().back()

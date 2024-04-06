@@ -19,10 +19,10 @@
     @apply grid grid-cols-5 border-b-2 border-rose-400 mx-auto cursor-context-menu text-center;
   }
   .toast {
-    @apply fixed bottom-4 right-2 text-sm border-2 p-2 pl-3 pr-8 md:p-3 rounded-md cursor-context-menu;
+    @apply fixed bottom-4 left-2 text-sm border-2 p-2 pl-3 pr-8 md:p-3 rounded-md cursor-context-menu;
   }
   .success {
-    @apply border-blue-300 text-neutral-600 bg-white font-medium;
+    @apply border-blue-300 text-neutral-600 bg-white font-medium animate-pulse;
   }
   .error {
     @apply bg-red-500 text-neutral-100 animate-pulse;

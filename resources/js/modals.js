@@ -4,8 +4,10 @@ function handleModal() {
   const contributionButton = document.querySelector('#contribution-button')
   modalCloseButton.addEventListener('click', function () {
     modal.classList.toggle('hidden')
+    modal.classList.toggle('flex')
   })
   contributionButton.addEventListener('click', function () {
+    modal.classList.toggle('flex')
     modal.classList.toggle('hidden')
   })
 }
