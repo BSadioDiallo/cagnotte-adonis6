@@ -19,12 +19,12 @@
     @apply grid grid-cols-5 border-b-2 border-rose-400 mx-auto cursor-context-menu text-center;
   }
   .toast {
-    @apply fixed bottom-0 z-50 right-2 text-sm border p-2 pl-3 pr-8 md:p-3 rounded-md transition-transform delay-75 duration-1000 -translate-y-6 transform cursor-context-menu;
+    @apply fixed bottom-4 right-2 text-sm border-2 p-2 pl-3 pr-8 md:p-3 rounded-md cursor-context-menu;
   }
-  .info {
-    @apply text-neutral-800 border-blue-400;
+  .success {
+    @apply border-blue-300 text-neutral-600 bg-white font-medium;
   }
-  .warning {
-    @apply bg-red-300 border-red-400;
+  .error {
+    @apply bg-red-500 text-neutral-100 animate-pulse;
   }
 }

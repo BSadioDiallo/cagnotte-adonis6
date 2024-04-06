@@ -10,25 +10,18 @@ export default class StudentsController {
   async store({ request, response, session }: HttpContext) {
     const payload = await request.validateUsing(createStudentValidator)
 
-    const student = await Student.create(payload)
-
-    if (payload.contribution >= 10000) {
-      try {
-        const transaction = new Transaction()
-        transaction.amount = payload.contribution
-        transaction.studentId = student.id
-        await transaction.save()
-        await student.related('transactions').save(transaction)
-        response.safeStatus(201) // created
-        response.redirect().back()
-      } catch (error) {
-        response.status(400)
-        session.flash('error', 'An error occurred while saving the transaction')
-        response.redirect().back()
-      }
-    } else {
+    try {
+      const student = await Student.create(payload)
+      const transaction = new Transaction()
+      transaction.amount = payload.contribution
+      transaction.studentId = student.id
+      await transaction.save()
+      await student.related('transactions').save(transaction)
+      response.safeStatus(201) // created
+      response.redirect().back()
+    } catch (error) {
       response.status(400)
-      session.flash('error', 'Contribution must be at least 10000')
+      session.flash('error', 'An error occurred while saving the transaction')
       response.redirect().back()
     }
   }

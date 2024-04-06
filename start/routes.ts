@@ -9,6 +9,8 @@
 const SessionController = () => import('#controllers/session_controller')
 const DashboardController = () => import('#controllers/dashboard_controller')
 const StudentController = () => import('#controllers/students_controller')
+const StudentApiController = () => import('#controllers/student_apis_controller')
+
 import router from '@adonisjs/core/services/router'
 import { middleware } from './kernel.js'
 
@@ -30,3 +32,9 @@ router.get('/transactions', [DashboardController, 'transactions']).as('dashboard
 router.get('/students', [StudentController, 'index']).as('student.index')
 router.get('/students/:id', [StudentController, 'show']).as('student.show')
 router.post('/students', [StudentController, 'store']).as('student.store')
+
+router
+  .group(() => {
+    router.post('/students/:id', [StudentApiController, 'contribute']).as('student.contribute')
+  })
+  .prefix('/api')
