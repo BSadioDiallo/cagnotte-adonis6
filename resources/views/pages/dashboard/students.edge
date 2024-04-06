@@ -8,21 +8,21 @@
 </head>
 <body class="h-full">
   @include('partials/navigation')
-  <main class="container relative top-24 mx-auto text-lg">
-    <div>
+  <main class="container relative top-24 mx-auto">
+    <div class="text-lg">
       <span>Ajouter un nouvel Etudiant : </span> <span class="button"> <a href=" {{ route('student.index') }}">Ajouter</a> </span>
     </div>
     <div class="w-full mx-auto flex flex-col items-center">
-      <div class="text-lg w-full mx-auto mt-4">
-        <div class="information-display-div bg-rose-400 text-neutral-50">
+      <div class="w-full mx-auto mt-4">
+        <div class="information-display-div text-rose-500 text-lg">
           <p>Matricule</p>
           <p>Nom</p>
-          <p>Prénom</p>
+          <p>Prenom</p>
           <p>Contribution</p>
-          <p>Actions</p>
+          <p>Details</p>
         </div>
       @if(!students)
-        <p class="text-center font-mono text-xl">Aucun étudiant n'a été enregistré</p>
+        <p class="text-center font-mono text-lg">Aucun étudiant n'a été enregistré</p>
       @else
         @each(student in students)
         <div class="information-display-div">
@@ -30,7 +30,7 @@
           <p>{{ student.lastname }}</p>
           <p>{{ student.firstname }}</p>
           <p>{{ student.contribution }}</p>
-          <a class="button rounded-none text-center" href="{{ route('student.show', [student.id]) }}">Details</a>
+          <a class="button rounded-none flex justify-center" href="{{ route('student.show', [student.id]) }}"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-ellipsis"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg></a>
         </div>
         @end
       @end

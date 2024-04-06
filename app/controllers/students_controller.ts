@@ -7,22 +7,30 @@ export default class StudentsController {
   async index({ view }: HttpContext) {
     return view.render('pages/students/index')
   }
-  async store({ request, response }: HttpContext) {
+  async store({ request, response, session }: HttpContext) {
     const payload = await request.validateUsing(createStudentValidator)
+
     const student = await Student.create(payload)
 
-    if (payload.contribution > 0) {
-      const transaction = new Transaction()
-      transaction.amount = payload.contribution
-      transaction.studentId = student.id
-      await transaction.save()
-      await student.related('transactions').save(transaction)
-      response.status(200)
+    if (payload.contribution >= 10000) {
+      try {
+        const transaction = new Transaction()
+        transaction.amount = payload.contribution
+        transaction.studentId = student.id
+        await transaction.save()
+        await student.related('transactions').save(transaction)
+        response.safeStatus(201) // created
+        response.redirect().back()
+      } catch (error) {
+        response.status(400)
+        session.flash('error', 'An error occurred while saving the transaction')
+        response.redirect().back()
+      }
+    } else {
+      response.status(400)
+      session.flash('error', 'Contribution must be at least 10000')
       response.redirect().back()
-      return
     }
-
-    response.send('not stored')
   }
 
   async show({ view, params }: HttpContext) {
