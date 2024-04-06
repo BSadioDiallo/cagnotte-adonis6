@@ -6,6 +6,8 @@ const toastElement = document.querySelector('#toast')
 
 toggleMenuBtn.addEventListener('click', toggleNav)
 
+import handleModal from './modals'
+
 function toggleNav() {
   toggledMenu.classList.toggle('-translate-y-full')
 
@@ -17,7 +19,11 @@ function toggleNav() {
     toggleMenuBtn.setAttribute('aria-expanded', 'true')
   }
 }
-toastElement.addEventListener('', removeToast)
+try {
+  toastElement.addEventListener('click', removeToast)
+} catch (error) {
+  console.error('No toast element found')
+}
 
 function removeToast() {
   // toastElement.querySelector('svg').addEventListener('click', () => {
@@ -29,10 +35,15 @@ function removeToast() {
     setTimeout(() => {
       toastElement.remove()
     }, 300)
-  }, 5000)
+  }, 6000)
 }
 
-window.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {
+  try {
+    handleModal()
+  } catch (error) {
+    console.error('modal de paiements absent')
+  }
   if (toastElement) {
     removeToast()
   }

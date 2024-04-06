@@ -1,0 +1,18 @@
+<div id="modal" class="fixed inset-0 items-center justify-center backdrop-blur-sm hidden">
+  <form action="{{ route('student.contribute', { id }) }}" method="post">
+    {{ csrfField() }}
+    <div class="modal-content bg-white rounded-lg shadow-lg p-6 relative">
+      <span class="close absolute top-0 right-0 px-2 cursor-pointer">
+        <img src="../../../assets/cross.svg" alt=""></span>
+      <h2 class="text-xl font-bold text-rose-400 mb-4">Faire une contribution</h2>
+      <input type="number" name="amount" placeholder="montant"
+        class="p-2 border border-rose-400 rounded-md"
+        value="{{ old('amount') || null }}"
+      >
+      <input id="contribution-button"
+      class="text-rose-500 cursor-pointer"
+      type="submit"
+      value="Envoyer">
+    </div>
+  </form>
+</div>
