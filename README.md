@@ -7,6 +7,13 @@ git clone https://github.com/BSadioDiallo/cagnotte-adonis6.git
 cd cagnotte-adonis6
 pnpm install
 ```
+## Lancer les migrations
+Avant de continuer il faut lancer les migrations pour la base de données.
+
+```
+node ace migration:run
+```
+
 ## Lancer le serveur
 ```
 pnpn run dev
