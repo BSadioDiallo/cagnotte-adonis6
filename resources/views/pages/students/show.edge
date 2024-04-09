@@ -13,7 +13,7 @@
     <div class="px-4">
     <div class="px-4 sm:px-0">
       <h3 class="text-lg font-semibold leading-7 text-gray-900">Informations de l'étudiant</h3>
-      <p class="mt-1 max-w-2xl text-sm leading-6 text-gray-500">Details personnels et contribution.</p>
+      <p class="mt-1 max-w-2xl text-sm leading-3 text-gray-500">Details personnels et contribution.</p>
     </div>
     <div class="mt-6 border-t border-rose-200">
       <dl class="divide-y divide-rose-200">
@@ -33,6 +33,10 @@
           <dt class="text-base font-medium leading-6 text-gray-900">Contribution</dt>
           <dd class="mt-1 text-base leading-6 text-gray-700 sm:col-span-2 sm:mt-0"> {{ student.contribution }} GNF</dd>
         </div>
+        <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+          <dt class="text-base font-medium leading-6 text-gray-900">Montant restant</dt>
+          <dd class="mt-1 text-base leading-6 text-gray-700 sm:col-span-2 sm:mt-0"> {{ 400000 - student.contribution }} GNF</dd>
+        </div>
     </div>
     <div class="flex justify-end -translate-y-1 md:-translate-y-0">
       <button id="contribution-button" class="button">Faire une contribution</button>
@@ -41,11 +45,10 @@
       @!component('components/modal', { id : student.id })
     </div>
     @if(flashMessages.has('success'))
-      @!component('components/toast', { message : "Transaction effectuée" })
-    @else
-      @if(flashMessages.has('error'))
-        @!component('components/toast', { type : 'error', message : "Transaction échouée" })
-      @endif
+      @!component('components/toast', { message : flashMessages.get('success')})
+    @end
+    @if(flashMessages.has('error'))
+        @!component('components/toast', { type : 'error', message : flashMessages.get('error')})
     @end
     @inputError('amount')
       @each(message in $messages)

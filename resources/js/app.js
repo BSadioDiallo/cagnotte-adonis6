@@ -1,7 +1,7 @@
 const toggleMenuBtn = document.querySelector('#menu-btn')
 const toggleMenuImg = document.querySelector('#menu-btn img')
 const toggledMenu = document.querySelector('#toggled-menu')
-const menuLinks = document.querySelector('#main-nav ul a')
+//const menuLinks = document.querySelector('#main-nav ul a')
 const toastElement = document.querySelector('#toast')
 
 toggleMenuBtn.addEventListener('click', toggleNav)

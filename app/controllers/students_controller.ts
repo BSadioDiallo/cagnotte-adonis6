@@ -19,6 +19,7 @@ export default class StudentsController {
       await transaction.save()
       await student.related('transactions').save(transaction)
 
+      session.flash('success', 'Étudiant créé avec succès.')
       response.redirect().back()
     } catch (error) {
       response.status(400)
@@ -32,9 +33,7 @@ export default class StudentsController {
       const student = await Student.findOrFail(params.id)
       return view.render('pages/students/show', { student })
     } catch (error) {
-      console.error(error)
+      return view.render('pages/errors/404')
     }
-
-    return view.render('pages/dashboard/index')
   }
 }

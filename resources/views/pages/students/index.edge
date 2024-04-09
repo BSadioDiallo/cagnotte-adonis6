@@ -21,7 +21,9 @@
               autocomplete="off"
               value="{{ old("matricule") || ''}}"
               required>
-              <svg class="w-4 stroke-neutral-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-info"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+              <div title="le matricule doit être composé de 7 chiffres et commencer par 1 ou 2" class="self-center">
+                <svg class="w-4 stroke-neutral-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-info"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+              </div>
             </div>
           </div>
           <div class="flex justify-between items-center">
@@ -31,7 +33,9 @@
               autocomplete="off"
               value="{{ old("lastname") || ''}}"
               required>
-              <svg class="w-4 stroke-neutral-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-info"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+              <div title="Au moins deux lettres pour le nom" class="self-center">
+                <svg class="w-4 stroke-neutral-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-info"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+              </div>
             </div>
           </div>
           <div class="flex justify-between items-center">
@@ -41,7 +45,9 @@
               autocomplete="off"
               value="{{ old("firstname") || ''}}"
               required>
-              <svg class="w-4 stroke-neutral-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-info"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+              <div title="Au moins deux lettres pour le prenom" class="self-center">
+                <svg class="w-4 stroke-neutral-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-info"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+              </div>
             </div>
           </div>
           <div class="flex justify-between items-center">
@@ -51,7 +57,9 @@
               autocomplete="off"
               value="{{ old("email") || ''}}"
               required>
-              <svg class="w-4 stroke-neutral-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-info"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+              <div title="Entrer une adresse mail valide" class="self-center">
+                <svg class="w-4 stroke-neutral-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-info"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+              </div>
             </div>
           </div>
           <div class="flex justify-between items-center">
@@ -61,7 +69,9 @@
               autocomplete="off"
               value="{{ old("contribution") || ''}}"
               required>
-              <svg  class="w-4 stroke-neutral-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-info"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+              <div title="Au moins 10.000GNF de contribution" class="self-center">
+                <svg class="w-4 stroke-neutral-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-info"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+              </div>
             </div>
           </div>
           <div class="flex justify-center my-2">
@@ -70,8 +80,19 @@
         </div>
       </form>
     </div>
-    @if(flashMessages.has('inputErrorsBag'))
+    @if(flashMessages.has('inputErrorsBag.matricule'))
       @!component('components/toast', { type: 'error', message : flashMessages.get('inputErrorsBag.matricule') })
+    @elseif(flashMessages.has('inputErrorsBag.lastname'))
+      @!component('components/toast', { type: 'error', message : flashMessages.get('inputErrorsBag.lastname') })
+    @elseif(flashMessages.has('inputErrorsBag.firstname'))
+      @!component('components/toast', { type: 'error', message : flashMessages.get('inputErrorsBag.firstname') })
+    @elseif(flashMessages.has('inputErrorsBag.email'))
+      @!component('components/toast', { type: 'error', message : flashMessages.get('inputErrorsBag.email') })
+    @elseif(flashMessages.has('inputErrorsBag.contribution'))
+      @!component('components/toast', { type: 'error', message : flashMessages.get('inputErrorsBag.contribution') })
+    @end
+    @flashMessage('success')
+      @!component('components/toast', { type: 'success', message: flashMessages.get('success') })
     @end
     @flashMessage('error')
       @!component('components/toast', { type: 'error', message: flashMessages.get('error') })
