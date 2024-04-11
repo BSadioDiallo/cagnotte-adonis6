@@ -4,7 +4,6 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Enregistrer un etudiant</title>
-
   @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="h-full">
@@ -91,6 +90,7 @@
     @elseif(flashMessages.has('inputErrorsBag.contribution'))
       @!component('components/toast', { type: 'error', message : flashMessages.get('inputErrorsBag.contribution') })
     @end
+
     @flashMessage('success')
       @!component('components/toast', { type: 'success', message: flashMessages.get('success') })
     @end

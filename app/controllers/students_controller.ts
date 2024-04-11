@@ -8,7 +8,7 @@ export default class StudentsController {
     return view.render('pages/students/index')
   }
 
-  async store({ request, response, session, view }: HttpContext) {
+  async store({ request, response, session }: HttpContext) {
     const payload = await request.validateUsing(createStudentValidator)
 
     try {
@@ -22,9 +22,9 @@ export default class StudentsController {
       session.flash('success', 'Étudiant créé avec succès.')
       response.redirect().back()
     } catch (error) {
-      response.status(400)
       session.flash('error', 'Ce matricule est déjà utilisé.')
-      return view.render('pages/students/index')
+      console.error(error)
+      response.redirect().back()
     }
   }
 
@@ -36,4 +36,13 @@ export default class StudentsController {
       return view.render('pages/errors/404')
     }
   }
+  async edit({ view, params }: HttpContext) {
+    try {
+      const student = await Student.findOrFail(params.id)
+      return view.render('pages/students/edit', { student })
+    } catch (error) {
+      return view.render('pages/errors/not_found')
+    }
+  }
+  async update({}: HttpContext) {}
 }

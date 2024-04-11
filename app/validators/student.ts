@@ -17,18 +17,19 @@ export const createStudentValidator = vine.compile(
       .toUpperCase()
       .minLength(2),
     email: vine.string().trim().email(),
-    contribution: vine.number().withoutDecimals().min(10000),
+    contribution: vine.number().withoutDecimals().min(100000),
   })
 )
 
 const messages = {
   'matricule': 'le {{ field }} doit être composé de 7 chiffres et commencer par 1 ou 2',
   'matricule.required': 'le {{ field }} est obligatoire',
-  'matricule.unique': 'le {{ field }} est déjà utilisé',
+  'matricule.unique': 'ce {{ field }} est déjà utilisé',
+  'matricule.regex': 'le {{ field }} doit être composé de 7 chiffres et commencer par 1 ou 2',
   'firstname': 'Le prénom ne doit pas contenir de caractères spéciaux',
   'lastname': 'Le nom ne doit pas contenir de caractères spéciaux',
   'email': "L'adresse {{ field }} n'est pas valide",
-  'contribution': 'Le montant doit être supérieur ou égal à 10000 GNF',
+  'contribution': 'Le montant doit être supérieur ou égal à 100000 GNF',
 }
 
 createStudentValidator.messagesProvider = new SimpleMessagesProvider(messages)

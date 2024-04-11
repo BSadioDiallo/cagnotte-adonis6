@@ -11,5 +11,13 @@ function handleModal() {
     modal.classList.toggle('hidden')
   })
 }
-
+function HandleStudentModification() {
+  const studentInformatinsFields = Array.from(document.querySelectorAll('dd'))
+  const inputsArray = []
+  for (field in studentInformatinsFields) {
+    const input = document.createElement('input')
+    input.value = studentInformatinsFields[field].textContent
+    inputsArray.push(input)
+  }
+}
 export default handleModal
