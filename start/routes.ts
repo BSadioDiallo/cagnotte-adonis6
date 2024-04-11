@@ -32,7 +32,8 @@ router.get('/transactions', [DashboardController, 'transactions']).as('dashboard
 router.get('/students', [StudentController, 'index']).as('student.index')
 router.get('/students/:id', [StudentController, 'show']).as('student.show')
 router.post('/students', [StudentController, 'store']).as('student.store')
-
+router.get('/students/edit/:id', [StudentController, 'edit']).as('student.edit')
+router.post('/students/update', [StudentController, 'update']).as('student.update')
 router
   .group(() => {
     router.post('/students/:id', [StudentApiController, 'contribute']).as('student.contribute')

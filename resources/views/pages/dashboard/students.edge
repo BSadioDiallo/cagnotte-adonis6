@@ -25,7 +25,7 @@
         <p class="text-center font-mono text-lg">Aucun étudiant n'a été enregistré</p>
       @else
         @each(student in students)
-        <div class="information-display-div">
+        <div class="information-display-div text-sm md:text-base">
           <p>{{ student.matricule }}</p>
           <p>{{ student.lastname }}</p>
           <p>{{ student.firstname }}</p>
