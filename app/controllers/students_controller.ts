@@ -16,6 +16,8 @@ export default class StudentsController {
       const transaction = new Transaction()
       transaction.amount = payload.contribution
       transaction.studentId = student.id
+      transaction.studentMatricule = student.matricule
+
       await transaction.save()
       await student.related('transactions').save(transaction)
 

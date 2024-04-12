@@ -20,4 +20,18 @@ function HandleStudentModification() {
     inputsArray.push(input)
   }
 }
+
+export function handleLastPay() {
+  const form = document.querySelector('#payleft-form')
+  const button = form.querySelector('button')
+  const payleftButton = document.querySelector('#payleft-button')
+  payleftButton.addEventListener('click', () => {
+    form.classList.toggle('flex')
+    form.classList.toggle('hidden')
+  })
+  button.addEventListener('click', () => {
+    form.classList.toggle('hidden')
+    form.classList.toggle('flex')
+  })
+}
 export default handleModal

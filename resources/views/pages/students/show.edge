@@ -9,6 +9,7 @@
 <body class="h-full">
   @include('partials/navigation')
   <main class="relative top-20">
+    @let(contributionLeft = 400000 - student.contribution)
     <div class="px-4">
     <div class="px-4 sm:px-0">
       <div class="flex justify-between items-baseline">
@@ -43,15 +44,29 @@
         </div>
         <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
           <dt class="text-base font-medium leading-6 text-gray-900">Montant restant</dt>
-          <dd class="mt-1 text-base leading-6 text-gray-700 sm:col-span-2 sm:mt-0"> {{ 400000 - student.contribution }} GNF</dd>
+          <dd class="mt-1 text-base leading-6 text-gray-700 sm:col-span-2 sm:mt-0"> {{ contributionLeft}} GNF</dd>
         </div>
     </div>
-    <div class="flex justify-end -translate-y-1 md:-translate-y-0">
-      <button id="contribution-button" class="button">Faire une contribution</button>
+    <div class="flex justify-end -translate-y-1 md:-translate-y-0 fixed bottom-4 right-2">
+      @if(contributionLeft !== 0)
+        @if(contributionLeft <= 100000)
+          <button class="button" id="payleft-button">Payer le montant restant</button>
+        @else
+          <button id="contribution-button" class="button">Faire une contribution</button>
+        @end
+      @end
     </div>
-    <div>
-      @!component('components/modal', { id : student.id })
-    </div>
+
+    @unless(contributionLeft <= 100000)
+      <div>
+        @!component('components/payleft', { amount: contributionLeft,
+          id: student.id,
+          titre: 'Dialogue',
+          message: 'Faire le dernier versement de ' + contributionLeft + ' GNF ?'
+        })
+        @!component('components/modal', { id : student.id })
+      </div>
+    @end
     @if(flashMessages.has('success'))
       @!component('components/toast', { message : flashMessages.get('success')})
     @end

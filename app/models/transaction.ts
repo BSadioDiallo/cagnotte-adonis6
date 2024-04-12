@@ -13,6 +13,9 @@ export default class Transaction extends BaseModel {
   @column()
   declare studentId: number
 
+  @column()
+  declare studentMatricule: string
+
   @belongsTo(() => Student)
   declare student: BelongsTo<typeof Student>
 

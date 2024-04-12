@@ -7,6 +7,8 @@ export default class extends BaseSchema {
     this.schema.alterTable(this.tableName, (table) => {
       table.integer('student_id').unsigned().notNullable()
       table.foreign('student_id').references('students.id').onDelete('CASCADE')
+      table.string('student_matricule').notNullable()
+      table.foreign('student_matricule').references('students.matricule').onDelete('CASCADE')
     })
   }
 
