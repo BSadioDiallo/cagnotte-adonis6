@@ -1,0 +1,18 @@
+<div id="payleft-form"
+  class="fixed inset-0 hidden items-center justify-center z-50 backdrop-blur-sm">
+  <div class="bg-white rounded-lg shadow-lg p-6 w-72">
+    <h2 class="text-lg font-bold mb-4 text-zinc-800 mg:text-xl">{{ titre || 'Titre par defaut'}}</h2>
+    <p class="mb-4 text-zinc-600 text-base md:text-lg">{{ message || 'Message par default'}}</p>
+    <div  class="flex justify-between px-2">
+      <form action="{{ route('student.payleft', [id]) }}" method="post">
+        {{ csrfField() }}
+        <input class="hidden" type="number" value="{{ amount }}" name="amount">
+        <input type="submit" value="Oui"
+        class="px-4 py-2 bg-rose-400 text-white rounded hover:opacity-85 uppercase">
+      </form>
+      <button
+      class="px-4 py-2 text-rose-400 rounded hover:opacity-95 uppercase">
+      Non</button>
+    </div>
+  </div>
+</div></div>

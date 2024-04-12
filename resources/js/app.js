@@ -1,5 +1,5 @@
 import handleModal from './modals'
-
+import { handleLastPay } from './modals'
 const toggleMenuBtn = document.querySelector('#menu-btn')
 const toggleMenuImg = document.querySelector('#menu-btn img')
 const toggledMenu = document.querySelector('#toggled-menu')
@@ -42,6 +42,11 @@ document.addEventListener('DOMContentLoaded', () => {
     handleModal()
   } catch (error) {
     console.error('modal de paiements absent')
+  }
+  try {
+    handleLastPay()
+  } catch (error) {
+    console.error('last paiement absent')
   }
   if (toastElement) {
     removeToast()
