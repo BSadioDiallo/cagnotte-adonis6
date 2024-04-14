@@ -34,6 +34,7 @@ router.get('/students/:id', [StudentController, 'show']).as('student.show')
 router.post('/students', [StudentController, 'store']).as('student.store')
 router.get('/students/edit/:id', [StudentController, 'edit']).as('student.edit')
 router.post('/students/update', [StudentController, 'update']).as('student.update')
+router.get('/transactions/print/:id', [DashboardController, 'print']).as('transaction.print')
 
 router
   .group(() => {
