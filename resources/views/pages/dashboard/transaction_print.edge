@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reçu de paiement</title>
+  @vite(['resources/css/app.css', 'resources/js/app.js'])
+</head>
+<body>
+  @include('partials/navigation')
+  <div class="container mx-auto p-4 relative top-20">
+    <a class="text-xl font-semibold text-rose-400 uppercase font-mono print:hidden" href="{{ route('dashboard.transactions') }}">&#8678; Retour</a>
+    <h1 class="text-2xl font-bold mb-4 text-zinc-700">Reçu de contribution</h1>
+    <div class="border border-gray-300 p-4 rounded-lg lg:w-4/5 space-y-4">
+      <div class="flex justify-between">
+        <div>
+          <dt class="font-bold text-zinc-800">Matricule</dt>
+          <dd class="text-lg">{{ student.matricule }}</dd>
+        </div>
+        <div>
+          <dt class="font-bold text-zinc-800">Date de contribution:</dt>
+          <dd class="text-lg">{{ transaction.createdAt.toJSDate().toLocaleString() }}</dd>
+        </div>
+      </div>
+      <div>
+        <dt class="font-bold text-zinc-800">Nom et prénom:</dt>
+        <dd class="text-lg">{{ student.lastname }} {{ student.firstname }}</dd>
+      </div>
+      <div>
+        <dt class="font-bold text-zinc-800">Montant de la contribution:</dt>
+        <dd class="text-lg">{{ transaction.amount }} GNF</dd>
+      </div>
+      <div>
+        <dt class="font-bold text-zinc-800">Contribution restante :</dt>
+        @if(400000 - student.contribution)
+          <dd class="text-lg">{{ 400000 - student.contribution }}</dd>
+        @else
+          <dd class="text-zinc-800 text-lg">Plus rien à payer</dd>
+        @end
+      </div>
+    </div>
+    <button id="print-button"
+    class="button text-xl my-4 absolute right-2 print:hidden">
+    Imprimer</button>
+  </div>
+</body>
+</html>
+<script>
+  const button = document.querySelector('#print-button')
+  button.addEventListener('click', () => {
+    print()
+  })
+</script>

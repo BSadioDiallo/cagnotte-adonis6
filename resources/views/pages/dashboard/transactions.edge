@@ -37,7 +37,7 @@
               <td class="border border-rose-400">{{ transaction.amount }}</td>
               <td class="border border-rose-400">{{ transaction.studentMatricule }}</td>
               <td class="border border-rose-400"><a href="{{ route('student.show', [transaction.studentId]) }}">Details</a></td>
-              <td class="border border-rose-400"><a href="{{ route('student.show', [transaction.studentId]) }}">Imprimer</a></td>
+              <td class="border border-rose-400"><a href="{{ route('transaction.print', [transaction.id]) }}">Imprimer</a></td>
             </tr>
             @end
           @end
