@@ -8,8 +8,11 @@ export const createStudentValidator = vine.compile(
       .regex(/^[12][0-9]{6}$/)
       .unique(async function (db, value, field) {
         const student = await db.from('students').where('matricule', value).first()
-        field.report('Ce {{ field }} est déjà utilisé.', 'matricule.unique', field)
-        return student ? false : true
+        if (student) {
+          field.report('Ce {{ field }} est déjà utilisé.', 'matricule.unique', field)
+          return false
+        }
+        return true
       }),
     firstname: vine
       .string()

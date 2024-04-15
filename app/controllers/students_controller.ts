@@ -24,7 +24,6 @@ export default class StudentsController {
       session.flash('success', 'Étudiant créé avec succès.')
       response.redirect().back()
     } catch (error) {
-      session.flash('error', 'Ce matricule est déjà utilisé.')
       console.error(error)
       response.redirect().back()
     }
