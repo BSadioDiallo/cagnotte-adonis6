@@ -1,7 +1,7 @@
 import type { HttpContext } from '@adonisjs/core/http'
 import Student from '#models/student'
 import Transaction from '#models/transaction'
-import { createStudentValidator } from '#validators/student'
+import { createStudentValidator, updateStudentValidator } from '#validators/student'
 
 export default class StudentsController {
   async index({ view }: HttpContext) {
@@ -35,7 +35,7 @@ export default class StudentsController {
       const student = await Student.findOrFail(params.id)
       return view.render('pages/students/show', { student })
     } catch (error) {
-      return view.render('pages/errors/404')
+      return view.render('pages/errors/not_found')
     }
   }
   async edit({ view, params }: HttpContext) {
@@ -46,5 +46,25 @@ export default class StudentsController {
       return view.render('pages/errors/not_found')
     }
   }
-  async update({}: HttpContext) {}
+  async update({ request, response, session }: HttpContext) {
+    const payload = await request.validateUsing(updateStudentValidator)
+
+    try {
+      const student = await Student.findOrFail(payload.id)
+      student.merge(payload)
+      try {
+        await student.save()
+      } catch (error) {
+        session.flash('error', 'Ce matricule est déjà utilisé.')
+        return response.redirect().back()
+      }
+      session.flash('success', 'Informations mises à jour avec succès.')
+      response.redirect().toRoute('student.show', { id: student.id })
+    } catch (error) {
+      console.error(error)
+
+      session.flash('error', 'Une erreur est survenue lors de la mise à jour.')
+      response.redirect().back()
+    }
+  }
 }

@@ -34,4 +34,18 @@ export function handleLastPay() {
     form.classList.toggle('flex')
   })
 }
+
+export function handleStudentModification(event) {
+  event.preventDefault()
+  const inputs = Array.from(
+    document.querySelectorAll('input[type="text"], input[type="submit"], input[type="email"]')
+  )
+  for (let index in inputs) {
+    if (inputs[index].getAttribute('disabled') === null) {
+      inputs[index].setAttribute('disabled', 'disabled')
+    } else {
+      inputs[index].removeAttribute('disabled')
+    }
+  }
+}
 export default handleModal
