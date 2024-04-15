@@ -1,5 +1,6 @@
 import handleModal from './modals'
 import { handleLastPay } from './modals'
+import { handleStudentModification } from './modals'
 const toggleMenuBtn = document.querySelector('#menu-btn')
 const toggleMenuImg = document.querySelector('#menu-btn img')
 const toggledMenu = document.querySelector('#toggled-menu')
@@ -47,6 +48,32 @@ document.addEventListener('DOMContentLoaded', () => {
     handleLastPay()
   } catch (error) {
     console.error('last paiement absent')
+  }
+  try {
+    const toggleModifyBtn = document.querySelector('#activate-button')
+    if (toggleModifyBtn) {
+      toggleModifyBtn.addEventListener('click', (event) => {
+        handleStudentModification(event) // toggle inputs disabled attribute
+
+        if (toggleModifyBtn.classList.contains('deactive')) {
+          toggleModifyBtn
+            .querySelector('img')
+            .setAttribute('src', 'http://localhost:3333/assets/toggle_right.svg')
+          toggleModifyBtn.classList.remove('deactive', 'bg-neutral-400')
+          toggleModifyBtn.classList.add('bg-blue-400')
+        } else {
+          toggleModifyBtn
+            .querySelector('img')
+            .setAttribute('src', 'http://localhost:3333/assets/toggle_left.svg')
+          toggleModifyBtn.classList.remove('bg-blue-400')
+          toggleModifyBtn.classList.add('deactive', 'bg-neutral-400')
+        }
+      })
+    } else {
+      throw new Error('No modify button found')
+    }
+  } catch (error) {
+    console.error(error.message)
   }
   if (toastElement) {
     removeToast()

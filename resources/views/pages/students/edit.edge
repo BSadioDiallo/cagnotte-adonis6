@@ -3,23 +3,24 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Informations sur l'étudiant</title>s
+  <title>Modification</title>s
   @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="h-full">
+<body class="h-full bg-neutral-50">
   @include('partials/navigation')
   <main class="relative top-20">
-    <div class="px-4">
-    <div class="px-4 sm:px-0">
-      <div class="flex justify-between items-baseline">
-        <div>
-          <h3 class="text-lg font-semibold leading-7 text-gray-900">Informations de l'étudiant</h3>
-          <p class="mt-1 max-w-2xl text-sm leading-3 text-gray-500">Details personnels et contribution.</p>
-        </div>
-        <div>
-          <a href="{{ route('student.edit', [student.id]) }}"
-            class="button">Modifier Les informations
-        </a>
+    <form class="px-4 pb-2" action="{{ route('student.update')}} " method="post">
+      {{ csrfField() }}
+      <div class="px-4 sm:px-0">
+        <div class="flex justify-between items-baseline">
+          <div>
+            <h3 class="text-lg font-semibold leading-7 text-gray-900">Informations de l'étudiant</h3>
+            <p class="mt-1 max-w-2xl text-sm leading-3 text-gray-500">Details personnels</p>
+          </div>
+          <div>
+          <input type="submit" disabled
+            class="button bg-green-400 shadow-md shadow-neutral-100 drop-shadow-sm disabled:bg-neutral-300"
+            value="Enregistrer modifications">
         </div>
       </div>
     </div>
@@ -27,41 +28,61 @@
       <dl class="divide-y divide-rose-200">
         <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
           <dt class="text-base font-medium leading-6 text-gray-900">Matricule</dt>
-          <dd class="mt-1 text-base leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{ student.matricule }}</dd>
+          <input autocomplete="off" type="text" id="matricule"
+          required disabled name="matricule"
+          class="mt-1 px-1 text-base leading-6 text-gray-700 sm:col-span-2 sm:mt-0 bg-blue-100 disabled:bg-neutral-200 disabled:outline-none outline-neutral-200"
+          value="{{ student.matricule }}">
         </div>
         <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-          <dt class="text-base font-medium leading-6 text-gray-900">Nom complet</dt>
-          <dd class="mt-1 text-base leading-6 text-gray-700 sm:col-span-2 sm:mt-0"> {{ student.lastname }} {{ student.firstname }} </dd>
+          <dt class="text-base font-medium leading-6 text-gray-900">Nom</dt>
+          <input autocomplete="off" type="text" id="lastname"
+          required disabled name="lastname"
+          class="mt-1 px-1 text-base leading-6 text-gray-700 sm:col-span-2 sm:mt-0 bg-blue-100 disabled:bg-neutral-200 disabled:outline-none outline-neutral-200"
+          value="{{ student.lastname }}">
+        </div>
+        <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+          <dt class="text-base font-medium leading-6 text-gray-900">Prenom</dt>
+          <input autocomplete="off" type="text" id="firstname"
+          required disabled name="firstname"
+          class="mt-1 px-1 text-base leading-6 text-gray-800 sm:col-span-2 sm:mt-0 bg-blue-100 disabled:bg-neutral-200 disabled:outline-none outline-neutral-200"
+          value="{{ student.firstname }}">
         </div>
         <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
           <dt class="text-base font-medium leading-6 text-gray-900">Email</dt>
-          <dd class="mt-1 text-base leading-6 text-gray-700 sm:col-span-2 sm:mt-0"> {{ student.email }}</dd>
+          <input autocomplete="off" type="email" id="email"
+          required disabled name="email"
+          class=" mt-1 px-1 text-base leading-6 sm:col-span-2 sm:mt-0 bg-blue-100 disabled:bg-neutral-200 disabled:outline-none outline-neutral-200"
+          value="{{ student.email }}">
         </div>
         <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
           <dt class="text-base font-medium leading-6 text-gray-900">Contribution</dt>
           <dd class="mt-1 text-base leading-6 text-gray-700 sm:col-span-2 sm:mt-0"> {{ student.contribution }} GNF</dd>
         </div>
-        <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-          <dt class="text-base font-medium leading-6 text-gray-900">Montant restant</dt>
-          <dd class="mt-1 text-base leading-6 text-gray-700 sm:col-span-2 sm:mt-0"> {{ 400000 - student.contribution }} GNF</dd>
-        </div>
     </div>
-    <div class="flex justify-end -translate-y-1 md:-translate-y-0">
-      <button id="contribution-button" class="button">Faire une contribution</button>
+    <div class="flex justify-end space-x-3 mr-2">
+      <a href="{{ route('student.show', [student.id])}}" class="button bg-white text-zinc-600 border-2">Retour</a>
+      <button id="activate-button" class="button bg-neutral-400 deactive"><img class="w-6" src="http://localhost:3333/assets/toggle_left.svg"></button>
+      <a href="{{ request.url() }}" title="remise à zéro" class="button bg-blue-400"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-rotate-ccw"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg></a>
     </div>
-    <div>
-      @!component('components/modal', { id : student.id })
-    </div>
+    <input class="hidden" type="number" name="id" value="{{ student.id }}">
+  </form>
     @if(flashMessages.has('success'))
       @!component('components/toast', { message : flashMessages.get('success')})
     @end
     @if(flashMessages.has('error'))
         @!component('components/toast', { type : 'error', message : flashMessages.get('error')})
     @end
-    @inputError('amount')
-      @each(message in $messages)
-        @!component('components/toast', { type : 'error', message})
-      @end
+
+    @if(flashMessages.has('inputErrorsBag.matricule'))
+      @!component('components/toast', { type: 'error', message : flashMessages.get('inputErrorsBag.matricule') })
+    @elseif(flashMessages.has('inputErrorsBag.lastname'))
+      @!component('components/toast', { type: 'error', message : flashMessages.get('inputErrorsBag.lastname') })
+    @elseif(flashMessages.has('inputErrorsBag.firstname'))
+      @!component('components/toast', { type: 'error', message : flashMessages.get('inputErrorsBag.firstname') })
+    @elseif(flashMessages.has('inputErrorsBag.email'))
+      @!component('components/toast', { type: 'error', message : flashMessages.get('inputErrorsBag.email') })
+    @elseif(flashMessages.has('inputErrorsBag.contribution'))
+      @!component('components/toast', { type: 'error', message : flashMessages.get('inputErrorsBag.contribution') })
     @end
   </main>
 </body>

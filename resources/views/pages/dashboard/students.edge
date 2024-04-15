@@ -21,7 +21,7 @@
           <p>Contribution</p>
           <p>Details</p>
         </div>
-      @if(!students)
+      @if(students.length === 0)
         <p class="text-center font-mono text-lg">Aucun étudiant n'a été enregistré</p>
       @else
         @each(student in students)
