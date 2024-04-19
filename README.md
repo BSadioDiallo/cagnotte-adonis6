@@ -1,6 +1,12 @@
 # IMPORTANT
-j'ai utilisé pnpm pour installer les dépendances donkeuh telecharge le avant tu as juste à taper ces commandes en dessous.
+> [!NOTE]
+> You must have NODEJS and GIT installed in your machine.
 
+# Clone and install dependencies
+
+Run these commands to clone and install all dependencies.  
+I used pnpm as package manager.  
+So if you already have it you can ignore the `npm install -g pnpm`
 ```
 npm install -g pnpm
 git clone https://github.com/BSadioDiallo/cagnotte-adonis6.git
@@ -8,29 +14,21 @@ cd cagnotte-adonis6
 pnpm install
 ```
 
-## Creation du dossier pour la BD
-Une fois dans le dossier, à la racine tu dois creer un dossier `tmp` c'est là bas que sera stocker la bd
+## Create a environment file
+create a `.env` file or use the existing `.env.example` by renaming it.  
+> [!WARNING]
+> Do not use these environment variables in production
 
-## Creer un fichier env
-Après tu dois creer un fichier .env toujours à la racine, dedans tu copy et tu colle ça sauvegardz.  
-surtout n'oublie pas le nom du fichier c'est `.env` pas env, ni blalbla.env, juste `.env`
-```
-NODE_ENV=development
-PORT=3333
-APP_KEY=yRtE8A3g7sF2pW5bD6nH9kQ1vZ4cX6mY
-HOST=localhost
-LOG_LEVEL=debug
-SESSION_DRIVER=memory
-```
-## Lancer les migrations
-Avant de continuer il faut lancer les migrations pour la base de données.
+## Run migrations
+Before starting the server you must make migrations by running the following command.  
+This will create a sqlite database inside the `/tmp` directory.
 
 ```
 node ace migration:run
 ```
 
-## Lancer le serveur
+## Run server
 ```
-pnpn run dev
+pnpm run dev
 ```
-Le server se lance sur [localhost:3333](http://localhost:3333)
+The server will run on the port you specified inside the `.env` file.
