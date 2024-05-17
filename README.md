@@ -1,7 +1,7 @@
 # IMPORTANT
 > [!NOTE]
-> You must have NODEJS and GIT installed in your machine.
-
+> You must have <a href="https://nodejs.org/en/download/package-manager" target="_blank">NodeJs</a> and <a href="https://git-scm.com/downloads" target="_blank">GIT<a/> installed in your machine.
+> 
 # Clone and install dependencies
 
 Run these commands to clone and install all dependencies.  
