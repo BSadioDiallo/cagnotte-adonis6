@@ -16,8 +16,7 @@ pnpm install
 
 ## Create a environment file
 create a `.env` file or use the existing `.env.example` by renaming it.  
-> [!WARNING]
-> Do not use these environment variables in production
+then run `node ace generate:key` to generate a random application key.
 
 ## Run migrations
 Before starting the server you must make migrations by running the following command.  
