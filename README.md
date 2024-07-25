@@ -23,6 +23,7 @@ Before starting the server you must make migrations by running the following com
 This will create a sqlite database inside the `/tmp` directory.
 
 ```
+mkdir tmp
 node ace migration:run
 ```
 
